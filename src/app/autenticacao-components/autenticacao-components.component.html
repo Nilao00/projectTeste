@@ -1,0 +1,57 @@
+<div class="main">
+    <div class="card">
+        <div class="card-header">
+            <span style="font-weight: bold;">{{type}}</span>
+        </div>
+        <div class="card-body">
+            <!-- Box login -->
+            <div class="boxLogin" *ngIf="showLogin">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Usuário</label>
+                    <input type="text" class="form-control" [(ngModel)]="login" placeholder="Digite seu usuario">
+                </div>
+                <div class="form-group">
+                    <label for="password">Senha</label>
+                    <input type="password" class="form-control" [(ngModel)]="password" placeholder="Digite sua senha">
+                </div>
+                <button class="btn btn-outline-success btn-block" (click)="loginUser()">Login</button>
+                <br/>
+                <a (click)="showRegisterBox()" class="styleLink">Não possuo registro</a>
+            </div>
+            <!-- Box register -->
+            <div class="boxLogin" *ngIf="showRegister">
+                <div class="form-group">
+                    <label for="fullname">Nome completo</label>
+                    <input type="text" class="form-control" [(ngModel)]="fullname" placeholder="Digite o nome completo">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Telefone</label>
+                    <input type="tel" class="form-control" [(ngModel)]="phone" placeholder="Digite o telefone">
+                </div>
+                <div class="form-group">
+                    <label for="fullname">E-mail</label>
+                    <input type="email" class="form-control" [(ngModel)]="email" placeholder="Digite o email">
+                </div>
+                <div class="form-group">
+                    <label for="cpf">CPF</label>
+                    <input type="text" class="form-control" [(ngModel)]="cpf" placeholder="Digite o cpf">
+                </div>
+                <div class="form-group">
+                    <label for="usuario">Usuário</label>
+                    <input type="text" class="form-control" [(ngModel)]="login" placeholder="Digite seu usuario">
+                </div>
+                <div class="form-group">
+                    <label for="password">Senha</label>
+                    <input type="password" class="form-control" [(ngModel)]="password" placeholder="Digite sua senha">
+                </div>
+                <div class="form-group">
+                    <label for="password">Repite a senha</label>
+                    <input type="password" class="form-control" [(ngModel)]="rpassword" placeholder="Repita sua senha">
+                </div>
+                <button class="btn btn-outline-success btn-block" (click)="registerUser() ">Cadastrar</button>
+                <br/>
+                <a (click)="showLoginBox() " class="styleLink ">Já possuo registro</a>
+            </div>
+        </div>
+    </div>
+</div>
