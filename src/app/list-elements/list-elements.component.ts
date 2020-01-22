@@ -11,9 +11,6 @@ export class ListElementsComponent implements OnInit {
   users: any;
   search: string = '';
   limit = 0;
-  index = 1;
-  disabledBack: boolean = false;
-  disabledNext: boolean = false;
   constructor(private service: ListElementServiceService, private router: Router) { }
 
   ngOnInit() {
@@ -31,18 +28,11 @@ export class ListElementsComponent implements OnInit {
       }
     )
   }
-  /* paginate */
-  moreElement() {
-    if (this.limit < this.users.length) {
-      this.limit += 15;
-      this.listElements();
-    }
-  }
-  backElement() {
-    if (this.limit >= 15) {
-      this.limit -= 15;
-      this.listElements();
-    }
+  /* filter for any number */
+  filterNumber(event) {
+    this.limit = event;
+    console.log(this.limit)
+    this.listElements();
   }
   /* logout */
   logout() {

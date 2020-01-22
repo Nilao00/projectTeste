@@ -1,6 +1,14 @@
 <div class="main">
     <div class="disposeElements">
-        <input type="text" class="form-control" placeholder="Pesquise um elemento..." [(ngModel)]="search" />&nbsp;&nbsp;
+        <input type="text" class="form-control" placeholder="Pesquise um elemento..." [(ngModel)]="search" />&nbsp;&nbsp; &nbsp;
+        <select class="form-control" [(ngModel)]="limit" (ngModelChange)="filterNumber($event)">
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="5">15</option>
+            <option value="10">20</option>
+            <option value="5">25</option>
+            <option value="10">30</option>
+        </select> &nbsp; &nbsp;&nbsp;
         <button class="btn btn-danger" (click)="logout()">Sair</button>
     </div>
     <br/>
@@ -24,13 +32,5 @@
             </tbody>
         </table>
     </div>
-    <br />
-    <div>
-        <nav aria-label="pagination users">
-            <ul class="pagination">
-                <li class="page-item"><a class="page-link" (click)="backElement()">Menos Elementos</a></li>
-                <li class="page-item"><a class="page-link" (click)="moreElement()">Mais Elementos</a></li>
-            </ul>
-        </nav>
-    </div>
+
 </div>
