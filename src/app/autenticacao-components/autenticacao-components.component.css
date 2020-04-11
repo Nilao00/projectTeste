@@ -19,4 +19,12 @@
 .styleLink {
     text-decoration: none;
     color: #009947;
+    cursor: pointer;
+}
+
+
+.styleLink:hover {
+    text-decoration: none;
+    color: #009947;
+    cursor: pointer;
 }

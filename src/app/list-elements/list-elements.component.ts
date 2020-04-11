@@ -11,6 +11,7 @@ export class ListElementsComponent implements OnInit {
   users: any;
   search: string = '';
   limit = 0;
+  setUrl: string = '';
   constructor(private service: ListElementServiceService, private router: Router) { }
 
   ngOnInit() {
@@ -18,7 +19,12 @@ export class ListElementsComponent implements OnInit {
   }
   /* list elements */
   listElements() {
-    this.service.listElementsService(Urls.endpointDefault, Urls.list + "?limit=" + this.limit, true).subscribe(
+    if (this.limit == 0) {
+      this.setUrl = Urls.list;
+    } else {
+      this.setUrl = Urls.list + "?limit=" + this.limit;
+    }
+    this.service.listElementsService(Urls.endpointDefault, this.setUrl, true).subscribe(
       data => {
         this.users = data['data'];
       }, error => {
