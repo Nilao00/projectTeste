@@ -9,22 +9,50 @@ export class MethodsDefault {
 
     /* Method get Default */
     methodGet(url: string, params: any = "", token: boolean) {
-        if (params != "") {
-            return this.http.get(url + "/" + params, {
-                responseType: "json", headers: this.header
-            });
+        if (token) {
+            let header = new HttpHeaders({ "content-type": "application/json", "Authorization": `Bearer ${localStorage.getItem("token")}` });
+            if (params != "") {
+                return this.http.get(url + "/" + params, {
+                    responseType: "json", headers: header
+                });
+                // return this.cache.loadFromDelayedObservable(url, request, 'agnusChat', 60 * 60, delayType);
+            } else {
+                return this.http.get(url, { responseType: "json", headers: header });
+                //  return this.cache.loadFromDelayedObservable(url, request, 'agnusChat', 60 * 60, delayType);
+            }
         } else {
-            return this.http.get(url, { responseType: "json", headers: this.header });
+            let header = new HttpHeaders({ "content-type": "application/json" });
+            if (params != "") {
+                return this.http.get(url + "/" + params, {
+                    responseType: "json"
+                });
+            } else {
+                return this.http.get(url, { responseType: "json", headers: header });
+            }
         }
     }
     /* Method default post */
     methodPost(url: string, body: any, params: any = "", token: boolean) {
-        if (params != "") {
-            return this.http.post(url + "/" + params, body, {
-                responseType: "json", headers: this.header
-            });
+        if (token == true) {
+            let header = new HttpHeaders({ "content-type": "application/json", "Authorization": `Bearer ${localStorage.getItem("token")}` });
+            if (params != "") {
+                return this.http.post(url + "/" + params, body, {
+                    responseType: "json", headers: header
+                });
+            } else {
+                return this.http.post(url, body, { responseType: "json", headers: header });
+            }
         } else {
-            return this.http.post(url, body, { responseType: "json", headers: this.header });
+            let header = new HttpHeaders({ "content-type": "application/json" });
+
+            if (params != "") {
+                return this.http.post(url + "/" + params, body, {
+                    responseType: "json",
+                    headers: header
+                });
+            } else {
+                return this.http.post(url, body, { responseType: "json", headers: header });
+            }
         }
     }
     /* Method default put */

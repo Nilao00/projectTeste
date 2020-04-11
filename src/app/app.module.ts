@@ -9,6 +9,9 @@ import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { AuthGuard } from './Services/GuardRouter/AuthGuard';
 import { SearchUserPipe } from './list-elements/search-user.pipe';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
+import { ServiceOnlineOfflineService } from './Services/service-online-offline.service';
 
 @NgModule({
   declarations: [
@@ -21,9 +24,10 @@ import { SearchUserPipe } from './list-elements/search-user.pipe';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [AuthGuard],
+  providers: [AuthGuard,ServiceOnlineOfflineService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AouthServiceService } from './aouth-service.service';
 import Urls from '../Services/urlDefault/urlsDefaults';
 import { Router } from '@angular/router';
+import { ServiceOnlineOfflineService } from '../Services/service-online-offline.service';
+import oauth from '../models/oauth';
 @Component({
   selector: 'app-autenticacao-components',
   templateUrl: './autenticacao-components.component.html',
@@ -18,11 +20,31 @@ export class AutenticacaoComponentsComponent implements OnInit {
   showRegister: boolean = false;
   type: string = "Login";
   rpassword: string;
-  constructor(private service: AouthServiceService, private router: Router) { }
+  constructor(private service: AouthServiceService,
+    private router: Router,
+    private onlineOffline: ServiceOnlineOfflineService) {
+    this.lisenStatusConexao();
+  }
 
   ngOnInit() {
   }
 
+  public salvar() {
+    if (this.onlineOffline.isOnline) {
+      this.loginUser();
+    } else {
+     // this.loginUser();
+    }
+  }
+  private lisenStatusConexao() {
+    this.onlineOffline.statusConexao.subscribe(online => {
+      if (online) {
+        console.log('Enviando os dados do meu banco dados');
+      } else {
+        console.log('estou offline');
+      }
+    })
+  }
   /* Show form login */
   showLoginBox() {
     this.showLogin = true;

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ListElementServiceService } from './list-element-service.service';
 import Urls from '../Services/urlDefault/urlsDefaults';
 import { Router } from '@angular/router';
+import { ServiceOnlineOfflineService } from '../Services/service-online-offline.service';
 @Component({
   selector: 'app-list-elements',
   templateUrl: './list-elements.component.html',
@@ -12,8 +13,12 @@ export class ListElementsComponent implements OnInit {
   search: string = '';
   limit = 0;
   setUrl: string = '';
-  constructor(private service: ListElementServiceService, private router: Router) { }
+  constructor(private service: ListElementServiceService,
+    private router: Router,
+    private onlineOffline: ServiceOnlineOfflineService) {
+  }
 
+ 
   ngOnInit() {
     this.listElements();
   }
@@ -45,4 +50,6 @@ export class ListElementsComponent implements OnInit {
     localStorage.removeItem('token');
     window.location.reload();
   }
+
+
 }
